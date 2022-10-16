@@ -3,7 +3,7 @@ import json
 import pandas as pd
 
 response_API = requests.get('https://datausa.io/api/data?drilldowns=Nation&measures=Population')
-#print(response_API.status_code)
+print(response_API.status_code)
 data = response_API.text
 json_file = json.loads(data)
 list = json_file["data"]
