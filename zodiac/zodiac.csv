@@ -1,0 +1,13 @@
+zod_id,zod_name,zod_elem,zod_pol,zod_mod,zod_deg,zod_rad
+1,Aries,Fire,Negative,Cardinal,0,0
+2,Taurus,Earth,Positive,Fixed,30,0.52
+3,Gemini,Air,Positive,Mutable,60,1.05
+4,Cancer,Water,Negative,Cardinal,90,1.57
+5,Leo,Fire,Negative,Fixed,120,2.09
+6,Virgo,Earth,Positive,Mutable,150,2.62
+7,Libra,Air,Positive,Cardinal,180,3.14
+8,Scorpio,Water,Negative,Fixed,210,3.67
+9,Sagittarius,Fire,Negative,Mutable,240,4.19
+10,Capricorn,Earth,Positive,Cardinal,270,4.71
+11,Aquarius,Air,Positive,Fixed,300,5.24
+12,Pisces,Water,Negative,Mutable,330,5.76
