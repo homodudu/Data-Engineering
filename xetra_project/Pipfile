@@ -10,6 +10,8 @@ jupyter = "*"
 boto3 = "*"
 requests = "*"
 pyarrow = "*"
+pyyaml = "*"
+pylint = "*"
 
 [dev-packages]
 

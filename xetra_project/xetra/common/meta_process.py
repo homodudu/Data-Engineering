@@ -1,10 +1,10 @@
 """
-Methods for processing the meta file 
+Methods for processing the meta file
 """
 
 class MetaProcess():
     """
-        Class for working with the meta file
+    Class for managing the meta file
     """
 
     @staticmethod
@@ -14,7 +14,3 @@ class MetaProcess():
     @staticmethod
     def return_date_list():
         pass
-
-
-
-        
