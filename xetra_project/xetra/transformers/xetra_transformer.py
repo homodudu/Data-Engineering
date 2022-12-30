@@ -4,6 +4,7 @@ Xetra ETL Component
 import logging
 from datetime import datetime
 from typing import NamedTuple
+from memory_profiler import profile
 
 import pandas as pd
 
@@ -95,6 +96,7 @@ class XetraETL():
         self.meta_update_list = [date for date in self.extract_date_list\
             if date >= self.extract_date]
 
+    @profile
     def extract(self):
         """
         Read and concatenate source data into master Pandas DataFrame
@@ -113,6 +115,7 @@ class XetraETL():
         self._logger.info('Extracting Xetra source files finished.')
         return data_frame
 
+    @profile
     def transform_report1(self, data_frame: pd.DataFrame):
         """
         Applies the necessary transformation to create report 1
@@ -187,6 +190,7 @@ class XetraETL():
         self._logger.info('Applying transformations to Xetra source data finished...')
         return data_frame
 
+    @profile
     def load(self, data_frame: pd.DataFrame):
         """
         Saves Pandas DataFrame to the target
@@ -207,6 +211,7 @@ class XetraETL():
         self._logger.info('Xetra meta file successfully updated.')
         return True
 
+    @profile
     def etl_report1(self):
         """
         Extract, transform and load to create report 1

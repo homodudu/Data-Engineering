@@ -5,6 +5,7 @@ Connector and methods accessing S3
 import os
 import logging
 from io import StringIO, BytesIO
+from memory_profiler import profile
 
 import boto3
 import pandas as pd
@@ -33,6 +34,7 @@ class S3BucketConnector():
         self._s3 = self.session.resource(service_name='s3', endpoint_url=endpoint_url)
         self._bucket = self._s3.Bucket(bucket)
 
+    @profile
     def list_files_in_prefix(self, prefix: str):
         """
         List all files with a prefix on the the S3 bucket
@@ -45,6 +47,7 @@ class S3BucketConnector():
         files = [obj.key for obj in self._bucket.objects.filter(Prefix=prefix)]
         return files
 
+    @profile
     def read_csv_to_df(self, key: (str), encoding: str = 'utf-8', sep: str = ','):
         """
         Read csv file from S3 bucket and return a dataframe
@@ -64,6 +67,7 @@ class S3BucketConnector():
         data_frame = pd.read_csv(data, sep=sep)
         return data_frame
 
+    @profile
     def write_df_to_s3(self, data_frame: pd.DataFrame, key: str, file_format: str):
         """
         Write pandas dataframe to S3 bucket
@@ -90,6 +94,7 @@ class S3BucketConnector():
         self._logger.info('Cannot write %s to S3. File format not supported!', file_format)
         raise WrongFormatException
 
+    @profile
     def __put_object(self, out_buffer: StringIO or BytesIO, key: str):
         """
         Helper function for self.write_df_to_s3()
