@@ -9,7 +9,8 @@ boto3 = "*"
 requests = "*"
 pyarrow = "*"
 pyyaml = "*"
-
+memory-profiler = "*"
+matplotlib = "*"
 
 [dev-packages]
 awscli = "*"
