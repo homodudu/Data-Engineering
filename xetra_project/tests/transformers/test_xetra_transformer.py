@@ -1,4 +1,5 @@
-"""TestXetraETLMethods
+"""
+TestXetraETLMethods
 """
 import os
 import unittest
@@ -29,7 +30,7 @@ class TestXetraETLMethods(unittest.TestCase):
         # Define the class arguments
         self.s3_access_key = 'AWS_ACCESS_KEY_ID'
         self.s3_secret_key = 'AWS_SECRET_ACCESS_KEY'
-        self.s3_endpoint_url = 'https://s3.eu-central-1.amazonaws.com'
+        self.s3_endpoint_url = 'https://s3.eu-west-2.amazonaws.com'
         self.s3_bucket_name_src = 'src-bucket'
         self.s3_bucket_name_trg = 'trg-bucket'
         self.meta_key = 'meta_key'
