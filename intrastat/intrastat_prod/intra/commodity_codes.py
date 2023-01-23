@@ -7,6 +7,7 @@ import urllib.error # Url request handling module.
 import pandas as pd # Data analysis package.
 
 
+
 class CommodityCodes():
     """
     Read, transform and export commodity codes from requested url.
@@ -27,30 +28,30 @@ class CommodityCodes():
         # Read data into pandas dataframe.
         with urllib.request.urlopen(url) as cc_url:
             try:
-                data_frame = pd.read_excel(cc_url.read())
+                df = pd.read_excel(cc_url.read())
             except urllib.error.HTTPError as e_code:
                 if e_code.code == 404:
                     print('Error: Requested commodity code url is invalid.')
                 else:
                     print('Message: Requested commodity code url is valid.')
-        return data_frame
+        return df
 
-    def transform(self, data_frame: pd.DataFrame):
+    def transform(self, df: pd.DataFrame):
         """
         Transform commodity code data into lookup table format.
         """
         # Pad left first column to CN8 format
-        data_frame.iloc[:,0] = data_frame.iloc[:,0].astype("str")
-        data_frame.iloc[:,0] = data_frame.iloc[:,0].str.pad(8, side='left', fillchar='0')
+        df.iloc[:,0] = df.iloc[:,0].astype("str")
+        df.iloc[:,0] = df.iloc[:,0].str.pad(8, side='left', fillchar='0')
         # Rename first column to CN8.
-        data_frame.columns.values[0] = 'CN8'
-        return data_frame
+        df.columns.values[0] = 'CN8'
+        return df
 
-    def export(self, data_frame: pd.DataFrame):
+    def export(self, df: pd.DataFrame):
         """
         Export transformed commodity code table to csv file.
         """
-        data_frame.to_csv('CN8 Codes.csv', index=False)
+        df.to_csv('CN8 Codes.csv', index=False)
 
     def rte_process(self, url : str):
         """
