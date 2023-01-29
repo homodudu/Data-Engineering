@@ -3,7 +3,7 @@ Commodity code resource component.
 """
 import ssl # Secure sockets layer package.
 import urllib.request # Url request handling module.
-import urllib.error # Url request handling module.
+import urllib.error # Url error handling module.
 import pandas as pd # Data analysis package.
 
 
@@ -29,8 +29,8 @@ class CommodityCodes():
         with urllib.request.urlopen(url) as cc_url:
             try:
                 df = pd.read_excel(cc_url.read())
-            except urllib.error.HTTPError as e_code:
-                if e_code.code == 404:
+            except urllib.error.HTTPError as e:
+                if e.code == 404:
                     print('Error: Requested commodity code url is invalid.')
                 else:
                     print('Message: Requested commodity code url is valid.')
@@ -39,6 +39,8 @@ class CommodityCodes():
     def transform(self, df: pd.DataFrame):
         """
         Transform commodity code data into lookup table format.
+
+        df: The dataframe to be transformed.
         """
         # Pad left first column to CN8 format
         df.iloc[:,0] = df.iloc[:,0].astype("str")
@@ -50,12 +52,16 @@ class CommodityCodes():
     def export(self, df: pd.DataFrame):
         """
         Export transformed commodity code table to csv file.
+
+        df: The dataframe to be exported.
         """
         df.to_csv('CN8 Codes.csv', index=False)
 
     def rte_process(self, url : str):
         """
         Run full read, transform, export process.
+
+        url: The url of the commoditu code resource.
         """
         df_read = self.read(url)
         df_transform = self.transform(df_read)

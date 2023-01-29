@@ -19,7 +19,6 @@ class TestCommodityCodes(unittest.TestCase):
         """
         self.url_correct = str(cn.CommodityCodes.URL_USE)
         self.url_incorrect = str(cn.CommodityCodes.URL_TEST)
-        print(self.url_correct)
 
     def test_read_cc_to_dataframe_ok(self):
         """
