@@ -40,7 +40,7 @@ class TestFxRates(unittest.TestCase):
         Test if fx rate xml content has been parsed and read into a data frame.
         """
         # Method execution
-        df_res = fx.FxRates().parse_xml(self.xml_object_test_exp, self.xml_child, self.xml_namespaces)
+        df_res = fx.FxRatesRTE().parse_xml(self.xml_object_test_exp, self.xml_child, self.xml_namespaces)
         # Test after method execution
         columns_res = [c for c in df_res]
         self.assertEqual(columns_res, self.fx_data_columns_test_exp)
@@ -51,7 +51,7 @@ class TestFxRates(unittest.TestCase):
         Test if fx rate xml content has not been parsed and read into a data frame.
         """
         # Method execution
-        df_res = fx.FxRates().parse_xml(self.xml_object_test_not_exp, self.xml_child, self.xml_namespaces)
+        df_res = fx.FxRatesRTE().parse_xml(self.xml_object_test_not_exp, self.xml_child, self.xml_namespaces)
         # Test after method execution
         self.assertTrue(df_res.empty)
 
@@ -65,7 +65,7 @@ class TestFxRates(unittest.TestCase):
         # Expected results
         dates_exp = [d[0] for d in self.fx_data_body_test_exp]
         # Method execution
-        df_res = fx.FxRates().create_pivot(df)
+        df_res = fx.FxRatesRTE().create_pivot(df)
         dates_res = [str(dt.datetime.strftime(d, '%Y-%m-%d')) for d in df_res.index][::-1]
         # Test after method execution
         self.assertEqual(dates_res, dates_exp)
@@ -83,7 +83,7 @@ class TestFxRates(unittest.TestCase):
         df_exp['EUR'] = 1.0
         df_exp = df_exp.sort_index(ascending=False)
         # Method execution
-        df_res = fx.FxRates().create_pivot(df)
+        df_res = fx.FxRatesRTE().create_pivot(df)
         # Test after method execution
         self.assertTrue(df_res.equals(df_exp))
 
@@ -96,7 +96,7 @@ class TestFxRates(unittest.TestCase):
         df = pd.DataFrame(data, columns=self.fx_data_columns_test_not_exp)
         # Method execution with test
         with self.assertRaises(KeyError):
-            fx.FxRates().create_pivot(df)
+            fx.FxRatesRTE().create_pivot(df)
 
     def test_create_pivot_dataframe_empty(self):
         """
@@ -106,7 +106,7 @@ class TestFxRates(unittest.TestCase):
         df = pd.DataFrame()
         # Method execution with test
         with self.assertRaises(KeyError):
-            fx.FxRates().create_pivot(df)
+            fx.FxRatesRTE().create_pivot(df)
 
     def tearDown(self):
         """

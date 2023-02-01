@@ -7,7 +7,7 @@ import urllib.error # Url request handling module.
 import xml.etree.ElementTree as et # XML parsing library.
 import pandas as pd # Data analysis library.
 
-class FxRates():
+class FxRatesRTE():
     """
     Read, transform and export fx rates from requested url.
     """
@@ -76,8 +76,6 @@ class FxRates():
         except urllib.error.HTTPError as e:
             if e.code == 404:
                 print('Error: Requested fx rate url is invalid.')
-            else:
-                print('Message: Requested fx rate url is valid.')
         return df
 
     def transform(self, df: pd.DataFrame):

@@ -37,4 +37,8 @@ class Intrastat(str):
     """
     Global variables for intrastat class.
     """
-    URL_SRC_EXP = 'https://github.com/homodudu/Data-Engineering/blob/27a0e89ffe6d5ab814f28dc66e46fb37307ba546/intrastat/Intrastat%20Submission%20Sample.xlsx'
+    URL_EXP = 'https://github.com/homodudu/Data-Engineering/raw/main/intrastat/Intrastat%20Dispatches%20Data%20Sample.xlsx'
+    INT_COLUMNS_DROP = ['Description_x', 'Mass (grams)', 'Shipping Date', 'Ship From', 'Incoterms', 'Transaction','CN8','SU',
+                        'Description_y', 'CC Check', 'Net (EUR)', 'EUR to SEK']
+    INT_COLUMNS_EXP = ['Ship To', 'Commodity Code','Net (SEK)', 'Quantity', 'Mass (KG)', 'County of Origin', 'Mode of Transport', 'Partner VAT' ]
+    OUTPUT_FILENAME = 'Intrastat Submission Sample.xlsx'

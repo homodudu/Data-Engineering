@@ -6,9 +6,7 @@ import urllib.request # Url request handling module.
 import urllib.error # Url error handling module.
 import pandas as pd # Data analysis package.
 
-
-
-class CommodityCodes():
+class CommodityCodesRTE():
     """
     Read, transform and export commodity codes from requested url.
     """
@@ -23,7 +21,7 @@ class CommodityCodes():
         """
         Read commodity list url content into dataframe.
 
-        :url: The url of the commodity code resource.
+        url: The url of the commodity code resource.
         """
         # Read data into pandas dataframe.
         with urllib.request.urlopen(url) as cc_url:
@@ -32,8 +30,6 @@ class CommodityCodes():
             except urllib.error.HTTPError as e:
                 if e.code == 404:
                     print('Error: Requested commodity code url is invalid.')
-                else:
-                    print('Message: Requested commodity code url is valid.')
         return df
 
     def transform(self, df: pd.DataFrame):
