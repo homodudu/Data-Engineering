@@ -17,15 +17,15 @@ class TestCommodityCodes(unittest.TestCase):
         :url_correct - the correct url to test
         :url_incorrect: the incorrect url to test
         """
-        self.url_correct = str(cn.CommodityCodes.URL_USE)
-        self.url_incorrect = str(cn.CommodityCodes.URL_TEST)
+        self.url_exp = str(cn.CommodityCodes.URL_EXP)
+        self.url_not_exp = str(cn.CommodityCodes.URL_NOT_EXP)
 
     def test_read_cc_to_dataframe_ok(self):
         """
         Test if commodity code url content has been read into dataframe.
         """
         # Method execution
-        df_result = cc.CommodityCodes().read(self.url_correct)
+        df_result = cc.CommodityCodes().read(self.url_exp)
         # Test after method execution
         self.assertFalse(df_result.empty)
 
@@ -33,9 +33,9 @@ class TestCommodityCodes(unittest.TestCase):
         """
         Test if commodity code url content has not been read into the dataframe.
         """
-        # Method execution and test
+        # Method execution with test
         with self.assertRaises(er.HTTPError):
-            cc.CommodityCodes().read(self.url_incorrect)
+            cc.CommodityCodes().read(self.url_not_exp)
 
     def tearDown(self):
         """
