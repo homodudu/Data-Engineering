@@ -1,9 +1,10 @@
 """
 File to store constants
 """
+
 class CommodityCodes(str):
     """
-    Global variables for commodity_codes class.
+    Global variables for commodity codes class.
     """
 
     URL_EXP = 'https://www.cbs.nl/-/media/cbsvooruwbedrijf/international-trade-in-goods/commoditycodes-2023.xlsx'
@@ -12,7 +13,7 @@ class CommodityCodes(str):
 class FxRates(str):
 
     """
-    Global variables for commodity_codes class.
+    Global variables for fx rates class.
     """
 
     URL_EXP = 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml'
@@ -31,3 +32,9 @@ class FxRates(str):
                        ['2023-01-04','EUR','1.00'],
                        ['2023-01-05','EUR','1.00'],
                        ['2023-01-06','EUR','1.00']]
+
+class Intrastat(str):
+    """
+    Global variables for intrastat class.
+    """
+    URL_SRC_EXP = 'https://github.com/homodudu/Data-Engineering/blob/27a0e89ffe6d5ab814f28dc66e46fb37307ba546/intrastat/Intrastat%20Submission%20Sample.xlsx'
