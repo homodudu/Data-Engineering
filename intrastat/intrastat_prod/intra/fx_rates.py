@@ -26,7 +26,6 @@ class FxRatesRTE():
         xml_root: The root of the xml object.
         xml_namespaces: The namespaces of the xml object.
         """
-
         try:
             xml_tree = et.parse(xml_object)
             xml_root = xml_tree.getroot()
@@ -40,7 +39,6 @@ class FxRatesRTE():
             # Return empty dataframe if parse error.
             df = pd.DataFrame()
             print('Error: Xml data parsing failed.')
-
         return df
 
     def create_pivot(self, df: pd.DataFrame):

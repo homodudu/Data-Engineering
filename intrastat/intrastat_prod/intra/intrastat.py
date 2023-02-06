@@ -15,11 +15,12 @@ class IntrastatRATE():
         """
         Constructor (initialise attributes) for Intrastat class.
         """
-        # Disable security certificate checks for url requests.
-        ssl._create_default_https_context = ssl._create_unverified_context
+        # Define the class arguments
         self.url = cn.Intrastat.URL_EXP
         self.int_columns_drop = cn.Intrastat.INT_COLUMNS_DROP
         self.int_columns_exp = cn.Intrastat.INT_COLUMNS_EXP
+        # Disable security certificate checks for url requests.
+        ssl._create_default_https_context = ssl._create_unverified_context
 
     def return_mot(self, mode: str):
         """
