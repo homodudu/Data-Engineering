@@ -16,9 +16,9 @@ class IntrastatRATE():
         Constructor (initialise attributes) for Intrastat class.
         """
         # Define the class arguments
-        self.url = cn.Intrastat.URL_EXP
-        self.int_columns_drop = cn.Intrastat.INT_COLUMNS_DROP
-        self.int_columns_exp = cn.Intrastat.INT_COLUMNS_EXP
+        self.url = cn.Intrastat.URL
+        self.int_columns_drop = cn.Intrastat.COLUMNS_DROP
+        self.int_columns_exp = cn.Intrastat.COLUMNS_EXP
         # Disable security certificate checks for url requests.
         ssl._create_default_https_context = ssl._create_unverified_context
 
