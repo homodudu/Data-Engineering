@@ -6,9 +6,9 @@ import intra.fx_rates as fx
 import intra.constants as cn
 import pandas as pd
 
-class TestFxRates(unittest.TestCase):
+class TestFxRatesInteg(unittest.TestCase):
     """
-    Unittest the FxRates methods.
+    Intergration testing of the FxRates class.
     """
     def setUp(self):
         """

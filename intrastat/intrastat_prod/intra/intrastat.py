@@ -6,6 +6,7 @@ import urllib.request # Url request handling module.
 import pandas as pd # Data analysis library.
 import numpy as np # Array and matrice libary.
 import intra.constants as cn
+import logging
 
 class IntrastatRATE():
     """
@@ -16,6 +17,7 @@ class IntrastatRATE():
         Constructor (initialise attributes) for Intrastat class.
         """
         # Define the class arguments
+        self._logger = logging.getLogger(__name__)
         self.url = cn.Intrastat.URL
         self.int_columns_drop = cn.Intrastat.COLUMNS_DROP
         self.int_columns_exp = cn.Intrastat.COLUMNS_EXP
@@ -69,7 +71,8 @@ class IntrastatRATE():
                 df = pd.read_excel(src_url.read())
             except urllib.error.HTTPError as e:
                 if e.code == 404:
-                    print('Error: Requested source data url is invalid.')
+                    self._logger.error('Requested source data url is invalid')
+        self._logger.info('Source data has been read')
         return df
 
     def analyse(self, df_src: pd.DataFrame, df_cc: pd.DataFrame, df_fx: pd.DataFrame):
@@ -82,6 +85,7 @@ class IntrastatRATE():
         """
         df_cc_check = self.cc_check(df_src, df_cc)
         df_fx_convert = self.fx_convert(df_cc_check, df_fx)
+        self._logger.info('Source data has been analysed.')
         return df_fx_convert
 
     def transform(self, df_src: pd.DataFrame):
@@ -96,6 +100,7 @@ class IntrastatRATE():
         df_src["County of Origin"] = 'CN'
         df_src = df_src.drop(self.int_columns_drop, axis = 1)
         df_src = df_src[self.int_columns_exp]
+        self._logger.info('Source data has been transformed.')
         return df_src
 
     def export(self, file_name: str, df: pd.DataFrame):
@@ -107,7 +112,7 @@ class IntrastatRATE():
         """
         df.iloc[:,0] = df.iloc[:,0].astype("str")
         df.to_excel(file_name, index=False)
-        print('\nMessage: Submission file successfully exported.')
+        self._logger.info('Submission file has been exported.')
         print('4. Intrastat Submission File')
         print(df)
 

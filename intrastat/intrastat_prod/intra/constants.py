@@ -63,7 +63,7 @@ class Intrastat(str):
     Constants for intrastat and test class.
     """
     # Global Arguments
-    URL = 'https://github.com/homodudu/Data-Engineering/raw/main/intrastat/Intrastat%20Dispatches%20Data%20Sample.xlsx'
+    URL = 'https://github.com/homodudu/Data-Engineering/raw/main/intrastat/_resources/Intrastat%20Data%20Sample.xlsx'
     COLUMNS_DROP = ['Description_x', 'Mass (grams)', 'Shipping Date', 'Ship From', 'Incoterms', 'Transaction','CN8','SU',
                         'Description_y', 'CC Check', 'Net (EUR)', 'EUR to SEK']
     OUTPUT_FILENAME = 'Intrastat Submission Sample.xlsx'

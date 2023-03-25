@@ -7,9 +7,9 @@ import intra.commodity_codes as cc
 import intra.constants as cn
 import pandas as pd
 
-class TestCommodityCodes(unittest.TestCase):
+class TestCommodityCodesInteg(unittest.TestCase):
     """
-    Unittest the CommodityCodes component methods.
+    Integration testing of the CommodityCodes class.
     """
     def setUp(self):
         """

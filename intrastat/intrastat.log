@@ -1,0 +1,10 @@
+Intrastat - 2023-03-25 20:35:45,245 - INFO - Commodity code job started.
+Intrastat - 2023-03-25 20:35:46,432 - INFO - Commodity code job finished.
+Intrastat - 2023-03-25 20:35:46,432 - INFO - FX rate job started.
+Intrastat - 2023-03-25 20:35:46,687 - INFO - FX rate job finished.
+Intrastat - 2023-03-25 20:35:46,688 - INFO - Intrastat job started.
+Intrastat - 2023-03-25 20:35:47,139 - INFO - Source data has been read
+Intrastat - 2023-03-25 20:35:47,148 - INFO - Source data has been analysed.
+Intrastat - 2023-03-25 20:35:47,152 - INFO - Source data has been transformed.
+Intrastat - 2023-03-25 20:35:47,168 - INFO - Submission file has been exported.
+Intrastat - 2023-03-25 20:35:47,178 - INFO - Intrastat job finished.
