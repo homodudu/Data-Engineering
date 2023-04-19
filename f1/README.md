@@ -2,9 +2,9 @@
 
 ## Option 1
 
-Please find submission for coding exercise. 
+Please find submission for coding exercise.
 
-The Jupiter script to assess is /test/Pandas AWS Local.iypnb:
+Pyspark and Pandas attempts were made. The Jupiter script to assess is:
 
 https://github.com/homodudu/Data-Engineering/blob/main/f1/_test/F1-%20Pandas%20Local.ipynb
 
