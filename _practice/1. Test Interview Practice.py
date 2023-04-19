@@ -18,7 +18,7 @@ rev1('test')
 rev2('test')
 rev3('test')
 
-# 2. Fizzbang Practice
+# 2. FizzBang Practice
 def f_cond(c):
     if c%5==0 and c%3==0:
         return 'FizzBang'
@@ -33,7 +33,7 @@ def fizzbang(n):
 
 fizzbang(100)
 
-# 3. Fibonacci Practice
+# 3. Fibonacci Sequence Generation Practice
 def f_gen(n):
     cur,nxt = 0,1
     for _ in range(0,n):
@@ -47,7 +47,7 @@ def fib(n):
 
 fib(10)
 
-# 4. String 2 List Practice
+# 4. String To List Practice
 import re
 
 tests = ['1 vanity fair','3 epicurious','5 ars technica','7 pitchfork','9 architectural digest']
