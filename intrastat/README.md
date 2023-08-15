@@ -1,5 +1,6 @@
 
 # Intrastat
+![alt text](https://github.com/homodudu/Data-Engineering/blob/main/intrastat/_resources/Process%20Flow.png)
 
 ## Aim:
 Write a production ready data engineering pipeline using python and pandas.
@@ -22,11 +23,9 @@ Below outlines the steps to be performed:
  10) Display the content of the prepared file.
  11) Export the content as an excel file, submittable to the Swedish stats authority.
 
-## Process Flow:
-The pipeline is defined by four functions - READ, ANALYSE, TRANSFORM and EXPORT.
+## Author:
 
-[![alt text](https://github.com/homodudu/Data-Engineering/blob/main/intrastat/_resources/Process%20Flow.png)]
-
+- [@lullobytes](https://www.github.com/homodudu)
 
 
 
