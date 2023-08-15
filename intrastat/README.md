@@ -25,7 +25,7 @@ Below outlines the steps to be performed:
 ## Process Flow:
 The pipeline is defined by four functions - READ, ANALYSE, TRANSFORM and EXPORT.
 
-[![alt text](_resources/Process Flow.png)]
+[![alt text](https://github.com/homodudu/Data-Engineering/blob/main/intrastat/_resources/Process%20Flow.png)]
 
 
 
