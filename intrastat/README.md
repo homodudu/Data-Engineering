@@ -2,11 +2,11 @@
 # Intrastat
 ![alt text](https://github.com/homodudu/Data-Engineering/blob/main/intrastat/_resources/Process%20Flow.png)
 
-## Aim:
-Write a production ready data engineering pipeline using python and pandas.
-
 ## Overview: 
 Intrastat is a system that collects information relating to the trade of goods. This project will transform sample invoice data from a fictitious company into a submittable Swedish intrastat declaration.
+
+## Aim:
+Write a production ready data engineering pipeline using python and pandas.
 
 ## Task:
 Below outlines the steps to be performed:
@@ -24,8 +24,7 @@ Below outlines the steps to be performed:
  11) Export the content as an excel file, submittable to the Swedish stats authority.
 
 ## Author:
-
-- [@lullobytes](https://www.github.com/homodudu)
+- [@homodudu](https://www.github.com/homodudu)
 
 
 
