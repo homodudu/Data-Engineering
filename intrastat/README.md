@@ -22,5 +22,11 @@ Below outlines the steps to be performed:
  10) Display the content of the prepared file.
  11) Export the content as an excel file, submittable to the Swedish stats authority.
 
-[![](_resources/Process Flow.png)]
+## Process Flow:
+The pipeline is defined by four functions - READ, ANALYSE, TRANSFORM and EXPORT.
+
+[![alt text](_resources/Process Flow.png)]
+
+
+
 
