@@ -1,7 +1,7 @@
 # Data Engineering Projects
 
 ## Intrastat
-Intrastat is a system that collects information on the flow goods pertaining to intra EU trade. This project involves the creation of a data preparation pipeline to facilitate the submission of periodic declarations on an EU statistics portal. 
+Intrastat is a system that collects information on the flow goods pertaining to intra EU trade. This project involves the creation of a data preparation pipeline to facilitate the submission of periodic declarations to an EU statistics portal. 
 - [intrastat](https://github.com/homodudu/Data-Engineering/tree/main/intrastat)
 
 ## Xetra 
