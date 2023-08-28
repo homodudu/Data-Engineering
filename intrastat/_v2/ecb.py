@@ -86,18 +86,19 @@ class ecb():
         start_date: The start date for the ECB exchange rate request.
         end_date: The end date for the ECB exchange rate request.\n
         1. Dates must be provided in "YYYY-MM-DD" format.
-        2. If no date raage provided, the previous year will be returned.
+        2. If no date range provided, the previous year will be returned.
         """
-        # Check if default range is to be applied, else parse filter dates.
+        # Check if default start date needs applying, else parse input date.
         if start_date is None:
             start_date = self.start_date
         else:
            start_date = dt.datetime.strptime(start_date,'%Y-%m-%d')
+        # Check if default end date needs applying, else parse input date.
         if end_date is None:
             end_date = self.end_date
         else:
            end_date = dt.datetime.strptime(end_date,'%Y-%m-%d')
-        # Apply date filter to transformed xml data.
+        # Apply date filter range to transformed xml data.
         df_out = self._transform()
         df_out = df_out.loc[end_date:start_date]
         return df_out
