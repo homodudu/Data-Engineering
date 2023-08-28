@@ -27,7 +27,7 @@ class CN8():
         cn8 = cn8.ljust(8, '0')
         # Commodity API requires 10 digit query ID. Append suffixes to query string.
         cn8_suffix = ('00','10','20','30','40','50','60','70','80','90','99','XX')
-        # Make call to API.
+        # Send request to API.
         response_check = True
         while(response_check):
             for i in range(0,len(cn8_suffix)):
@@ -66,7 +66,7 @@ class CN8():
         df = pd.DataFrame(df["attributes"].tolist())
         df = df.loc[lambda x : ~x["formatted_base"].str.contains('span')]
         df = df.loc[lambda x : x["base"] != '']
-        # Assign hyphen symbol to commidities without supplementary unit.
+        # Assign hyphen symbol to commodities without supplementary unit.
         su = '-' if df.empty else df["base"].iloc[0]
         return su
 
