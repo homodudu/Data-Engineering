@@ -114,6 +114,5 @@ def main():
         df = pd.DataFrame(data,columns=['CC'])
         print(cn8().check(df,'CC'))
 
-
 if __name__ == '__main__':
     main()
