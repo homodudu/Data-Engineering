@@ -9,7 +9,7 @@ API_URL = 'https://ec.europa.eu/taxation_customs/vies/rest-api/ms/'
 COLUMNS_RESP = ["Vat Number","Response Code", "Valid",
                 "Description","Company", "Address","Request Date"]
 
-class VIES():
+class vies():
     """
     Class that enables verification checks through an API on a given list of VAT ID's.
     """
@@ -19,7 +19,7 @@ class VIES():
         """
         pass
 
-    def api_request(self, vat:str):
+    def _api_request(self, vat:str):
         """
         Request commodity code API response.\n
         vat: The VATID to be analysed.
@@ -48,7 +48,7 @@ class VIES():
         column_name: The column containing commodity codes to be analysed.
         """
         # Run validity check on unique rows to reduce API overhead.
-        data = [self.api_request(v) for v in df.drop_duplicates()[column_name]]
+        data = [self._api_request(v) for v in df.drop_duplicates()[column_name]]
         df_out = pd.DataFrame(data,columns=COLUMNS_RESP)
         # Append unique API responses to original duplicates. Match by VAT number.
         df['VAT NO'] = df[column_name].str[2:]
@@ -59,7 +59,7 @@ class VIES():
 def main():
         data = ['ATU25700701','ATU25700701','SK2020229618','FI15601431','PL52200000XX']
         df = pd.DataFrame(data,columns=['VATID'])
-        print(VIES().check(df,'VATID'))
+        print(vies().check(df,'VATID'))
 
 if __name__ == '__main__':
     main()

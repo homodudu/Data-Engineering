@@ -12,7 +12,7 @@ ECB_URL = 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml'
 XML_NAMESPACES = {'ex': 'http://www.ecb.int/vocabulary/2002-08-01/eurofxref'}
 XML_CHILD = './/ex:Cube'
 
-class ECB():
+class ecb():
     """
     Class that retrieves daily foreign exchange rate data from a URL.
     """
@@ -26,7 +26,7 @@ class ECB():
         self.end_date = dt.datetime.today()
         self.start_date = dt.datetime.today() - pd.DateOffset(years=1)
 
-    def parse(self):
+    def _parse(self):
         """
         Parse xml content and read into dataframe.
         """
@@ -41,14 +41,13 @@ class ECB():
             xml_data = [[row.get('time'), row.get('currency'), row.get('rate')] for row in rows]
             # Create columns for dataframe and read in content.
             df = pd.DataFrame(xml_data, columns = ['Date', 'Currency', 'Rate'])
-            print('Message: Xml data parsed successful.')
         except et.ParseError:
             # Return empty dataframe if parse error.
             df = pd.DataFrame()
-            print('Error: Xml data parsing failed.')
+            raise('Error: Xml data parsing failed.')
         return df
 
-    def pivot(self, df: pd.DataFrame):
+    def _pivot(self, df: pd.DataFrame):
         """
         Create fx rate pivot table by date and currency.\n
         df: The dataframe to create pivot table from.
@@ -63,13 +62,13 @@ class ECB():
         df_out = df_out.sort_index(ascending=0)
         return df_out
 
-    def transform(self):
+    def _transform(self):
         """
         Transform fx rates parsed from xml into dataframe.
         """
         # Read data into pandas dataframe.
         try:
-            df = self.parse()
+            df = self._parse()
         except urllib.error.HTTPError as e:
             if e.code == 404:
                 raise('Error: Requested fx rate url is invalid.')
@@ -78,7 +77,7 @@ class ECB():
         df = df.dropna()
         # Create fx rate pivot.
         df['Rate'] = pd.to_numeric(df['Rate'])
-        df_out = self.pivot(df)
+        df_out = self._pivot(df)
         return df_out
 
     def get_rates(self, start_date=None, end_date=None):
@@ -99,12 +98,12 @@ class ECB():
         else:
            end_date = dt.datetime.strptime(end_date,'%Y-%m-%d')
         # Apply date filter to transformed xml data.
-        df_out = self.transform()
+        df_out = self._transform()
         df_out = df_out.loc[end_date:start_date]
         return df_out
 
 def main():
-        print(ECB().get_rates('2023-01-05'))
+        print(ecb().get_rates('2023-01-05'))
 
 if __name__ == '__main__':
     main()

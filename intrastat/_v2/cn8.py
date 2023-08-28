@@ -18,7 +18,7 @@ class cn8():
         """
         pass
 
-    def get_response(self, cn8:str):
+    def _get_response(self, cn8:str):
         """
         Get commodity code response from API.\n
         cn8: The 8 digit combined nomenclature to be analysed.
@@ -42,7 +42,7 @@ class cn8():
                     break
         return response_API
 
-    def get_description(self, json_file:json):
+    def _get_description(self, json_file:json):
         """
         Get commodity code description from json response.\n
         json_file: The json file to be parsed into data frame.
@@ -53,7 +53,7 @@ class cn8():
         description = df["attributes"].loc["formatted_description"]
         return description
 
-    def get_supplementary(self, json_file :json):
+    def _get_supplementary(self, json_file :json):
         """
         Get commodity code supplementary unit from json response.\n
         json_file: The json file to be parsed into data frame.
@@ -70,19 +70,19 @@ class cn8():
         su = '-' if df.empty else df["base"].iloc[0]
         return su
 
-    def api_request(self, cn8:str):
+    def _api_request(self, cn8:str):
         """
         Request commodity code API response.\n
         cn8: The 8-digit combined nomenclature to be analysed.
         """
         # Send API request.
-        response_API = self.get_response(cn8)
+        response_API = self._get_response(cn8)
         # Analyse status code.
         if response_API.status_code == 200:
             message = True
             json_file = json.loads(response_API.text)
-            description = self.get_description(json_file)
-            su = self.get_supplementary(json_file)
+            description = self._get_description(json_file)
+            su = self._get_supplementary(json_file)
         elif response_API.status_code == 404:
             message = False
             description = 'Invalid commodity code - no description'
@@ -103,7 +103,7 @@ class cn8():
         column_name: The column containing commodity codes to be analysed.
         """
         # Run validity check on unique rows to reduce API overhead.
-        data = [self.api_request(c) for c in df.drop_duplicates()[column_name]]
+        data = [self._api_request(c) for c in df.drop_duplicates()[column_name]]
         df_out = pd.DataFrame(data,columns=COLUMNS_RESP)
         # Append unique API responses to original duplicates. Match by CN8 code.
         df_out = pd.merge(df, df_out, left_on=column_name, right_on=COLUMNS_RESP[0])
