@@ -8,7 +8,7 @@ import pandas as pd # Data analysis package.
 API_URL = 'https://www.trade-tariff.service.gov.uk/api/v2/commodities/'
 COLUMNS_RESP = ["CN8","Response Code", "Valid", "Description", "SU"]
 
-class CN8():
+class cn8():
     """
     Class that enables verification checks through an API on a given list of commodity codes.
     """
@@ -112,7 +112,7 @@ class CN8():
 def main():
         data = ['46012110','46012110','61041990','40151200','01022910','22021000','99999999']
         df = pd.DataFrame(data,columns=['CC'])
-        print(CN8().check(df,'CC'))
+        print(cn8().check(df,'CC'))
 
 
 if __name__ == '__main__':
