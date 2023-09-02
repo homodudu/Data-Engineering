@@ -104,7 +104,7 @@ class ecb():
         return df_out
 
 def main():
-        print(ecb().get_rates('2023-08-01'))
+    pass
 
 if __name__ == '__main__':
     main()

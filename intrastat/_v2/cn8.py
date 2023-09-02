@@ -24,6 +24,7 @@ class cn8():
         cn8: The 8 digit combined nomenclature to be analysed.
         """
         # Format input data to 8-digit commodity code.
+        cn8 = str(cn8)[:8:]
         cn8 = cn8.ljust(8, '0')
         # Commodity API requires 10 digit query ID. Append suffixes to query string.
         cn8_suffix = ('00','10','20','30','40','50','60','70','80','90','99','XX')
@@ -103,16 +104,16 @@ class cn8():
         column_name: The column containing commodity codes to be analysed.
         """
         # Run validity check on unique rows to reduce API overhead.
-        data = [self._api_request(c) for c in df.drop_duplicates()[column_name]]
-        df_out = pd.DataFrame(data,columns=COLUMNS_RESP)
+        data = [self._api_request(c) for c in df[column_name].drop_duplicates()]
+        df_response = pd.DataFrame(data,columns=COLUMNS_RESP)
         # Append unique API responses to original duplicates. Match by CN8 code.
-        df_out = pd.merge(df, df_out, left_on=column_name, right_on=COLUMNS_RESP[0])
+        df_out = pd.merge(df, df_response, left_on=column_name, right_on=COLUMNS_RESP[0])
+        df_out.drop_duplicates(inplace=True)
+        df_out.reset_index(drop=True, inplace=True)
         return df_out
 
 def main():
-        data = ['46012110','46012110','61041990','40151200','01022910','22021000','99999999']
-        df = pd.DataFrame(data,columns=['CC'])
-        print(cn8().check(df,'CC'))
+    pass
 
 if __name__ == '__main__':
     main()

@@ -24,9 +24,11 @@ class vies():
         Request commodity code API response.\n
         vat: The VATID to be analysed.
         """
-        # Send API request.
+        # Format VATID and components.
+        vat = str(vat)
         vat_no = vat[2::]
         alpha2 = vat[:2:]
+        # Send API request.
         response_API = requests.get(API_URL + alpha2 + '/vat/' + vat_no)
         data = json.loads(response_API.text)
         description = ''
@@ -48,18 +50,18 @@ class vies():
         column_name: The column containing commodity codes to be analysed.
         """
         # Run validity check on unique rows to reduce API overhead.
-        data = [self._api_request(v) for v in df.drop_duplicates()[column_name]]
-        df_out = pd.DataFrame(data,columns=COLUMNS_RESP)
+        data = [self._api_request(v) for v in df[column_name].drop_duplicates()]
+        df_response = pd.DataFrame(data,columns=COLUMNS_RESP)
         # Append unique API responses to original duplicates. Match by VAT number.
         df['VAT NO'] = df[column_name].str[2:]
-        df_out = pd.merge(df, df_out, left_on='VAT NO', right_on=COLUMNS_RESP[0])
+        df_out = pd.merge(df, df_response, left_on='VAT NO', right_on=COLUMNS_RESP[0], how='left')
+        df_out.drop_duplicates(inplace=True)
+        df_out.reset_index(drop=True, inplace=True)
         df_out.drop('VAT NO', axis=1, inplace=True)
         return df_out
 
 def main():
-        data = ['ATU25700701','ATU25700701','SK2020229618','FI15601431','PL52200000XX']
-        df = pd.DataFrame(data,columns=['VATID'])
-        print(vies().check(df,'VATID'))
+    pass
 
 if __name__ == '__main__':
     main()
