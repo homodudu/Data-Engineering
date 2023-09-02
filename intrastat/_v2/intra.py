@@ -1,5 +1,5 @@
 """
-Intrastat utility classes module.
+Intrastat utility class module.
 """
 import pandas as pd # Data analysis package.
 import requests # API request handling module.
