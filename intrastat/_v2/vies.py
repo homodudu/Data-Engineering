@@ -55,8 +55,9 @@ class vies():
         # Append unique API responses to original duplicates. Match by VAT number.
         df['VAT NO'] = df[column_name].str[2:]
         df_out = pd.merge(df, df_response, left_on='VAT NO', right_on=COLUMNS_RESP[0], how='left')
-        df_out.drop_duplicates(inplace=True)
-        df_out.reset_index(drop=True, inplace=True)
+        if df_out.shape[0] > df.shape[0]:
+            df_out.drop_duplicates(inplace=True)
+            df_out.reset_index(drop=True, inplace=True)
         df_out.drop('VAT NO', axis=1, inplace=True)
         return df_out
 

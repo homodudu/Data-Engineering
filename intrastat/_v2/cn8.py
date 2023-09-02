@@ -108,8 +108,9 @@ class cn8():
         df_response = pd.DataFrame(data,columns=COLUMNS_RESP)
         # Append unique API responses to original duplicates. Match by CN8 code.
         df_out = pd.merge(df, df_response, left_on=column_name, right_on=COLUMNS_RESP[0])
-        df_out.drop_duplicates(inplace=True)
-        df_out.reset_index(drop=True, inplace=True)
+        if df_out.shape[0] > df.shape[0]:
+            df_out.drop_duplicates(inplace=True)
+            df_out.reset_index(drop=True, inplace=True)
         return df_out
 
 def main():
