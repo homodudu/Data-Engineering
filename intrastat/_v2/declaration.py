@@ -1,6 +1,6 @@
 """
 Intrastat is a system that collects information relating to the trade of goods.
-This script will prepare sample data from a fictious company into a submissable Swedish declaration.
+This script will prepare sample data from a fictitious company into a submissable Swedish declaration.
 """
 import pandas as pd # Data analysis library.
 import _v2.cn8 as cn # Commodity code utility module.
@@ -10,7 +10,6 @@ import _v2.intra as it # Intrastat utility module.
 
 # Read intrastat sample to data frame.
 df = pd.read_excel('intrastat/_resources/Intrastat Data Sample.xlsx')
-
 print('1. Input file:\n')
 print(df)
 
