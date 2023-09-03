@@ -6,7 +6,7 @@ import urllib.request # Url handling module.
 import urllib.error # Url request handling module.
 import xml.etree.ElementTree as et # XML parsing library.
 import pandas as pd # Data analysis library.
-import datetime as dt
+import datetime as dt # Date parsing library.
 
 ECB_URL = 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml'
 XML_NAMESPACES = {'ex': 'http://www.ecb.int/vocabulary/2002-08-01/eurofxref'}
