@@ -10,7 +10,7 @@ import _v2.intra as it # Intrastat utility module.
 
 # Read intrastat sample to data frame.
 df = pd.read_excel('intrastat/_resources/Intrastat Data Sample.xlsx')
-print('1. Input file:\n')
+print('\n1. Input file:\n')
 print(df)
 
 # Transform mass, country code and mode of transport.
@@ -22,11 +22,13 @@ df = it.mot().check(df,'Mode of Transport')
 # Analyse VAT codes.
 df.loc[df['Transaction'] == 'B2C','Partner VAT'] = 'QV999999999999'
 df_vies = vs.vies().check(df, 'Partner VAT')
-print('2. Vies check:\n')
+print('\n2. Vies check:\n')
 print(df_vies)
 
 # Analyse commodity codes.
 df = cn.cn8().check(df,'Commodity Code')
+print('\n3. Cn8 check:\n')
+print(df)
 
 # FX rate conversion.
 df['Shipping Date'] = pd.to_datetime(df['Shipping Date'])
@@ -39,5 +41,5 @@ df['NET'] = round(df['NET'],2)
 columns = ['CN8', 'Ship To', 'COO','MOT',
         'Incoterms', 'NET', 'MASS', 'Quantity','Partner VAT']
 df = df[columns]
-print('3. Output file:\n')
+print('\n4. Output file:\n')
 print(df)
