@@ -1,10 +1,10 @@
 
 # Intrastat
 
-## Overview: 
+## Overview:
 Intrastat is a system that collects information relating to the trade of goods. This project will transform sample invoice data from a fictitious company into a submittable Swedish intrastat declaration.
 
-![alt text](https://github.com/homodudu/Data-Engineering/blob/main/intrastat/_resources/Process%20Flow.png)
+![alt text](https://github.com/homodudu/Data-Engineering/blob/main/intrastat/_resources/Process%20Flow%20V2.png)
 
 ## Aim:
 Write a production ready data engineering pipeline using python and pandas.
@@ -20,12 +20,9 @@ Below outlines the steps to be performed:
  06) Request the sample intrastat data url and read content into pd data frame.
  07) Verify sample data using commodity code list.
  08) Apply daily exchange rate calculation on sample invoice values.
- 09) Apply final transformations to intrastat output file. 
+ 09) Apply final transformations to intrastat output file.
  10) Display the content of the prepared file.
  11) Export the content as an excel file, submittable to the Swedish stats authority.
 
 ## Author:
 - [@homodudu](https://www.github.com/homodudu)
-
-
-
