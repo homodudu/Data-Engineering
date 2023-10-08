@@ -62,7 +62,9 @@ class vies():
         return df_out
 
 def main():
-    pass
+    data = ['ATU25700701','ATU25700701','SK2020229618','FI15601431','PL52200000XX']
+    df = pd.DataFrame(data,columns=['VATID'])
+    print(vies().check(df,'VATID'))
 
 if __name__ == '__main__':
     main()

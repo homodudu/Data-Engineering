@@ -114,7 +114,9 @@ class cn8():
         return df_out
 
 def main():
-    pass
+    data = ['46012110','46012110','61041990','40151200','01022910','22021000','99999999']
+    df = pd.DataFrame(data,columns=['CC'])
+    print(cn8().check(df,'CC'))
 
 if __name__ == '__main__':
     main()

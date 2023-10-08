@@ -6,11 +6,11 @@ import pandas as pd # Data analysis library.
 import _v2.cn8 as cn # Commodity code utility module.
 import _v2.vies as vs  # VIES utility module.
 import _v2.ecb as ec # ECB rate utility module.
+import _v2.iso as ic # ISO country code utility module.
 import _v2.intra as it # Intrastat utility module.
 
 INPUT_FILE = 'intrastat/_resources/Intrastat Data Sample.xlsx'
 OUTPUT_FILE = 'intrastat/_v2/Intrastat Declaration Sample.xlsx'
-
 
 def rate(input_file, output_file):
     """
@@ -37,16 +37,14 @@ def rate(input_file, output_file):
 
     # Analyse reporting currency.
     df['Shipping Date'] = pd.to_datetime(df['Shipping Date'])
-    df_ecb = ec.ecb().get_rates('2022-01-01')['SEK']
-    df = pd.merge(left=df, right=df_ecb, left_on='Shipping Date', right_index=True, how='left')
-    df['Net (SEK)'] = df['Net (EUR)'].astype(float)*df['SEK'].astype(float)
-    df['Net (SEK)'] = round(df['Net (SEK)'],2)
+    df = ec.ecb().convert_from_eur(df,'Net (EUR)','SEK','Shipping Date','2022-01-01')
+    df['Net (SEK)'] = round(df['Amount SEK'],2)
     print('\n4. FX rate check:\n')
     print(df[['Net (EUR)','SEK','Net (SEK)']])
 
     # Transform mass, country code and mode of transport.
     df['MASS'] = df['Mass (grams)'].astype(float)*0.001
-    df = it.iso().country_to_iso2(df,df['Country of Origin'])
+    df = ic.iso().country_to_iso2(df,df['Country of Origin'])
     df = df.rename(columns={'ISO2': 'COO'})
     df = it.mot().check(df,'Mode of Transport')
 

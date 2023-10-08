@@ -59,7 +59,7 @@ class ecb():
         df_out = df_out.reindex(date_idx)
         # Fill forward missing weekend fx rate values.
         df_out = df_out.ffill(axis=0)
-        df_out = df_out.sort_index(ascending=0)
+        df_out = df_out.sort_index(ascending=False)
         return df_out
 
     def _transform(self):
@@ -83,8 +83,8 @@ class ecb():
     def get_rates(self, start_date=None, end_date=None):
         """
         Get ECB exchange rates from a specific period. \n
-        start_date: The start date for the ECB exchange rate request.
-        end_date: The end date for the ECB exchange rate request.\n
+        start_date: Optional - The period start date for the ECB exchange rate request.
+        end_date: Optional - The period end date for the ECB exchange rate request.\n
         1. Dates must be provided in "YYYY-MM-DD" format.
         2. If no date range provided, the previous year will be returned.
         """
@@ -103,8 +103,42 @@ class ecb():
         df_out = df_out.loc[end_date:start_date]
         return df_out
 
+    def convert_from_eur(self, df:pd.DataFrame, eur_amount:str, f_currency:str, ref_date:dt.datetime, start_date=None, end_date=None):
+        """
+        Convert fiscal data from euros to foreign currency.\n
+        df: The data frame containing the amounts to be converted.
+        eur_amount: The column containing the EUR amounts.
+        f_currency: The foreign currency the EUR amounts will be converted to.
+        reference_date: The reference date that the currency will be exchanged on.
+        start_date: Optional - The period start date for the ECB exchange rate request.
+        end_date: Optional - The period end date for the ECB exchange rate request.
+        1. Dates must be provided in "YYYY-MM-DD" format.
+        2. If no date range provided, the previous year will be returned.
+        """
+        df_ecb = self.get_rates(start_date, end_date)[f_currency]
+        df = pd.merge(left=df, right=df_ecb, left_on=ref_date, right_index=True, how='left')
+        df['Amount ' + f_currency] = df[eur_amount].astype(float)*df[f_currency].astype(float)
+        return df
+
+    def convert_to_eur(self, df:pd.DataFrame, loc_amount:str, f_currency:str, ref_date:dt.datetime, start_date=None, end_date=None):
+        """
+        Convert fiscal data from foreign currency to euros.\n
+        df: The data frame containing the amounts to be converted.
+        local_amount: The column containing the local amounts.
+        f_currency: The foreign currency the EUR amounts will be converted from.
+        reference_date: The reference date that the currency will be exchanged on.
+        start_date: Optional - The period start date for the ECB exchange rate request.
+        end_date: Optional - The period end date for the ECB exchange rate request.
+        1. Dates must be provided in "YYYY-MM-DD" format.
+        2. If no date range provided, the previous year will be returned.
+        """
+        df_ecb = self.get_rates(start_date, end_date)[f_currency]
+        df = pd.merge(left=df, right=df_ecb, left_on=ref_date, right_index=True, how='left')
+        df['Amount EUR'] = df[loc_amount].astype(float)/df[f_currency].astype(float)
+        return df
+
 def main():
-    pass
+    print(ecb().get_rates())
 
 if __name__ == '__main__':
     main()
