@@ -65,13 +65,15 @@ class iso():
 
     def alpha2_to_iso2(self, df, column_name):
         """
-        Translate alpha2 country code to ISO-2 equivalent. Append result.\n
+        Translate alpha2 country code to intrastat ISO-2 equivalent. Append result.\n
         df: The data frame containing a country code.
         column_name: The column containing the country code to be analysed.\n
-        GB does not adopt ISO standard and defined as XU for intrastat purposes.
+        Certain country codes have intrastat specific translations such as GB -> XU.
         """
         # Translate GB intrastat code manually. Does not adopt ISO standard.
         df[column_name] = df[column_name].replace(regex="UK|GB", value='XU')
+        # Translate RS intrastat code manually. Does not adopt ISO standard.
+        df[column_name] = df[column_name].replace(regex="RS", value='XS')
         # Retrieve country code lookup table.
         df_out = self._api_request()['cca2']
         # Match by key column. Return original and value columns only.
