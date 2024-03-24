@@ -1,0 +1,26 @@
+Country,ISO,Threshold
+Austria,AT,35000
+Belgium,BE,25000
+Czech Republic,CZ,3800
+Denmark,DK,6708
+Estonia,EE,4000
+Finland,FI,1500
+France,FR,3400
+Germany,DE,2200
+Greece,GR,1000
+Hungary,HU,316
+Ireland,IE,3500
+Italy,IT,1000
+Latvia,LV,4000
+Lithuania,LT,4500
+Luxembourg,LU,3500
+Netherlands,NL,2500
+Norway,NO,500
+Poland,PL,43800
+Portugal,PT,2500
+Slovak Republic,SK,4790
+Slovenia,SI,5000
+Spain,ES,1000
+Sweden,SE,500
+Switzerland,CH,9700
+United Kingdom,GB,9538
